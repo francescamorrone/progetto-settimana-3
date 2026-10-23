@@ -14,7 +14,7 @@ body {
 	color: #565656;
 }
 
-.container, #controls {
+.container, #controls, #filter-div {
     max-width: 992px;
     margin: 0 auto;
 }
@@ -27,7 +27,7 @@ h1, header p {
 
 .top-wrapper {
     background-color: #111116;
-    background-image: url('../img/controls-background.jpg');
+    background-image: url('../img/Gemini_Generated_Image_9gxv7g9gxv7g9gxv.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -65,7 +65,9 @@ padding: 4rem 4rem 0;
     max-height: 7rem;
     max-width: 7rem;
     border: none;
+    margin-right: 2rem;
 }
+
 #filter-div {
     padding: 3rem;
 }
@@ -76,9 +78,16 @@ padding: 4rem 4rem 0;
     border: none;
 }
 
+.card {
+    border: 1px solid black;
+    width: 25%;
+    border-radius: 10px;
+
+}
 
 .immagine-card {
-    width: 300px;
+    width: 60%;
+    border-radius: 7px;
 }
 
 
