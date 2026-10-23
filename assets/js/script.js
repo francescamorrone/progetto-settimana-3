@@ -49,26 +49,19 @@ function leggiFiltri() {
     */
     let outputArray = corpiCelesti;
     if (categoryStars.classList.contains("selected")) {
-        console.log("stars")
         outputArray = filtra(outputArray, "Stella")
     } else if (categorySatellites.classList.contains("selected")) {
-        console.log("satellites")
         outputArray = filtra(outputArray, "Satellite")
     } else if (categoryGalaxies.classList.contains("selected")) {
-        console.log("galaxies")
         outputArray = filtra(outputArray, "Galassia")
     } else if (categoryNebulas.classList.contains("selected")) {
-        console.log("nebulas")
         outputArray = filtra(outputArray, "Nebulosa")
     } else if (categoryPianeta.classList.contains("selected")) {
-        console.log("planets")
         outputArray = filtra(outputArray, "Pianeta")
     } else if (categoryFav.classList.contains("selected")) {
-        console.log("fav")
         outputArray = filtra(outputArray, "Fav")
     }
     outputArray = cerca(outputArray)
-    //outputArray = ordina("ascNome")
     return outputArray;
 }
 
@@ -93,11 +86,9 @@ function ordina(criterio) {
 
 function aggiungiRimuoviPreferiti(id, checked){
     let index = corpiCelesti.findIndex(corpoCeleste => corpoCeleste.id == id)
-    console.log(index)
     
     if(index !== -1){
         corpiCelesti[index].preferiti = checked
-        console.log(corpiCelesti[index].preferiti)
         localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
     }
     render()
@@ -105,7 +96,6 @@ function aggiungiRimuoviPreferiti(id, checked){
 
 function deleteCorpoCeleste(id){
     let index = corpiCelesti.findIndex(corpoCeleste => corpoCeleste.id == id)
-    console.log(index)
     if(index !== -1){
         corpiCelesti.splice(index, 1)
         localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
@@ -178,7 +168,6 @@ function render() {
         deleteButton.textContent = "Elimina"
         deleteButton.id = "delete-card"
         deleteButton.type = "button"
-        console.log(`asdasd ${corpiCelestiDaMostrare[i].id}`)
         deleteButton.value = corpiCelestiDaMostrare[i].id
         card.appendChild(deleteButton)
 
@@ -198,7 +187,6 @@ function render() {
 render()
 filterDiv.addEventListener("click", (event) => {
     if (event.target.type === "button") {
-        console.log(event.target.textContent)
         categoryAll.classList.remove("selected")
         categoryStars.classList.remove("selected")
         categorySatellites.classList.remove("selected")
@@ -415,20 +403,17 @@ createForm.addEventListener("click", (event) => {
 });
 
 search.addEventListener("input", function(event){
-    console.log(event.target.value)
     render()
 })
 
 listaCorpiCelesti.addEventListener("change", function(evento){
     if(evento.target.type === "checkbox"){
-        console.log(evento.target.checked)
         aggiungiRimuoviPreferiti(evento.target.value, evento.target.checked)
     }
 })
 
 listaCorpiCelesti.addEventListener("click", function(evento){
     if(evento.target.type === "button" && evento.target.id === "delete-card"){
-        console.log(evento.target.value)
         deleteCorpoCeleste(evento.target.value)
     }
     if(evento.target.type === "button" && evento.target.id === "edit-card"){
