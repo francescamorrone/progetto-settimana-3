@@ -14,7 +14,7 @@ body {
 	color: #565656;
 }
 
-.container {
+.container, #controls {
     max-width: 992px;
     margin: 0 auto;
 }
@@ -23,9 +23,7 @@ body {
 
 h1, header p {
     color:white;
-    
 }
-
 
 .top-wrapper {
     background-color: #111116;
@@ -48,27 +46,17 @@ header {
 
 
 /*search section*/
-.top-wrapper {
-
-}
 
 #controls {
-
-    padding: 5rem
-
+padding: 4rem 4rem 0;
 }
 
 #search {
     width: 50%;
-    padding: 8px;
+    padding: 0.8rem;
     border: none;
     border-radius: 25px;
     margin-right: 8rem;
-}
-
-#search:focus {
-    border-style: none;
-    
 }
 
 #filter-div > * {
@@ -78,8 +66,15 @@ header {
     max-width: 7rem;
     border: none;
 }
+#filter-div {
+    padding: 3rem;
+}
 
-
+#order {
+    padding: 0.8rem;
+    border-radius: 25px;
+    border: none;
+}
 
 
 .immagine-card {
