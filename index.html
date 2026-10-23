@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nebula</title>
-    
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
+
+
+<body>
+    <div class="top-wrapper">
+        <header>
+            <div class="intestazione">
+                <h1>Nebula</h1>
+                <p>Il tuo diario per l'osservazione del cielo.</p>
+            </div>
+
+            <label class="toggle-container">
+                <input type="checkbox" id="toggle-dark">
+                <span class="slider"></span>
+            </label>
+        </header>
+
+        <section id="controls">
+            <form>
+                <input type="text" id="search">
+                <select id="order"></select>
+            </form>
+        </section>
+
+        <div id="filter-div">
+            <button type="button" id="category-all" class="selected">Tutti</button>
+            <button type="button" id="category-stars">Stelle</button>
+            <button type="button" id="category-satellites">Satelliti</button>
+            <button type="button" id="category-galaxies">Galassie</button>
+            <button type="button" id="category-nebulas">Nebulose</button>
+            <button type="button" id="category-pianeta">Pianeti</button>
+            <button type="button" id="category-fav">Preferiti</button>
+
+        </div>
+    </div>
+
     <div class="container">
 
-        <header>
-            <h1>Nebula</h1>
-            <p>Il tuo diario per l'osservazione del cielo.</p>
 
-            <button class="dark" id="toggle-dark">Dark Mode</button>
-        </header>
 
         <main>
 
-            <section id="filter">
-                <form>
-                    <input type="text" id="search">
-                    <select id="order"></select>
-                </form>
-
-                <div>
-                    <button id="category-all">Tutti</button>
-                    <button id="category-stars">Stelle</button>
-                    <button id="category-satellites">Satelliti</button>
-                    <button id="category-galaxies">Galassie</button>
-                    <button id="category-nebulas">Nebulose</button>
-                    <button id="category-pianeta">Pianeta</button>
-                    <button id="category-fav">Preferiti</button>
-
-                </div>
-            </section>
+            
 
             <section>
-                <div id="lista-corpi-celesti"></div>
-                <div id="my-form"></div>
-                <button id="create-form">+</button>
+                <form id="lista-corpi-celesti"></form>
+                <form id="my-form"></form>
+
+                <button type="button" class="create-form" id="create-form">
+                    <span class="icon" id="add-form">+</span>
+                </button>
             </section>
         </main>
-    
+
         <footer>
             Francesca Morrone - 2026
         </footer>
 
     </div>
     <script src="assets/js/script.js"></script>
-<body>
-    
 </body>
+
 </html>

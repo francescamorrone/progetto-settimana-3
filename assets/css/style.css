@@ -1,0 +1,127 @@
+/*reset minimo*/
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: 'Inter', sans-serif;
+	background-color: #f7f7f7;
+	color: #565656;
+}
+
+.container {
+    max-width: 992px;
+    margin: 0 auto;
+}
+
+/*header*/
+
+h1, header p {
+    color:white;
+    
+}
+
+
+
+.top-wrapper {
+    background-color: #111116;
+    background-image: url('../img/controls-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5rem
+}
+
+header {
+    background-color: #111116;
+    overflow: hidden;
+    width: 100%;
+    padding: 2rem 6rem;
+}
+
+.intestazione {
+    float: left;
+}
+
+
+/*search section*/
+
+
+.top-wrapper {
+    background-color: #111116;
+    background-image: url('../img/controls-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5rem
+}
+
+#controls {
+margin-bottom: 2rem;
+max-width: 992px;
+margin: 0 auto;
+margin-bottom: 2rem;
+}
+
+#search {
+    width: 50%;
+    padding: 8px;
+    border: none;
+    border-radius: 25px;
+    margin-right: 8rem;
+}
+
+#search:focus {
+    border-style: none;
+    
+}
+
+#filter-div > * {
+    padding: 1rem;
+    border-radius: 25px;
+    max-height: 7rem;
+    max-width: 7rem;
+    border: none;
+}
+
+
+
+
+.immagine-card {
+    width: 300px;
+}
+
+
+
+/*toggle +*/
+
+.create-form {
+display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #777;
+  border-radius: 25px;
+  background-color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 13px;
+}
+
+.icon {
+font-size: 24px;
+  font-weight: 300;
+  color: #000;
+  min-width: 22px;
+  text-align: center;
+}
+
+
+/**/
