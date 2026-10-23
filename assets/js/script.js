@@ -420,7 +420,7 @@ listaCorpiCelesti.addEventListener("click", function(evento){
         let index = corpiCelesti.findIndex(c => c.id == evento.target.value)
         
         let card = evento.target.parentElement
-        let nameCard = card.firstChild 
+        let nameCard = card.querySelector(".name-card") 
 
         let input = document.createElement("input")
         input.value = corpiCelesti[index].nome
