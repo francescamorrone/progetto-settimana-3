@@ -14,6 +14,15 @@ const myForm = document.querySelector("#my-form");
 const createForm = document.querySelector("#create-form");
 const listaCorpiCelesti = document.querySelector("#lista-corpi-celesti")
 const addForm = document.querySelector("#add-form")
+const riepilogoTutti = document.querySelector("#riepilogoTutti");
+const riepilogoStelle = document.querySelector("#riepilogoStelle");
+const riepilogoSatelliti = document.querySelector("#riepilogoSatelliti");
+const riepilogoGalassie = document.querySelector("#riepilogoGalassie");
+const riepilogoNebulose = document.querySelector("#riepilogoNebulose");
+const riepilogoPianeti = document.querySelector("#riepilogoPianeti");
+const riepilogoFav = document.querySelector("#riepilogoFav");
+const body = document.querySelector("#body");
+
 
 let corpiCelesti = [];
 
@@ -100,13 +109,24 @@ function deleteCorpoCeleste(id){
     if(index !== -1){
         corpiCelesti.splice(index, 1)
         localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
+        notifica("Corpo celeste eliminato!", "green")
     }
     render()
 }
 
 function render() {
     listaCorpiCelesti.textContent = "";
+    riepilogoTutti.textContent = ` ${corpiCelesti.length}`;
 
+    // Per categoria
+    riepilogoStelle.textContent = ` ${corpiCelesti.filter(c => c.categoria === "Stella").length}`;
+    riepilogoSatelliti.textContent = ` ${corpiCelesti.filter(c => c.categoria === "Satellite").length}`;
+    riepilogoGalassie.textContent = ` ${corpiCelesti.filter(c => c.categoria === "Galassia").length}`;
+    riepilogoNebulose.textContent = ` ${corpiCelesti.filter(c => c.categoria === "Nebulosa").length}`;
+    riepilogoPianeti.textContent = ` ${corpiCelesti.filter(c => c.categoria === "Pianeta").length}`;
+
+    // Preferiti
+    riepilogoFav.textContent = ` ${corpiCelesti.filter(c => c.preferiti === true).length}`;
 
     let corpiCelestiDaMostrare = leggiFiltri()
 
@@ -114,20 +134,27 @@ function render() {
         const card = document.createElement("div");
         card.classList.add("card");
 
+        const categoryCard = document.createElement("p");
+        categoryCard.classList.add("category-card")
+        categoryCard.textContent = corpiCelestiDaMostrare[i].categoria;
+        card.appendChild(categoryCard);
+
         const nameCard = document.createElement("p");
+        nameCard.classList.add("name-card")
         nameCard.textContent = corpiCelestiDaMostrare[i].nome;
         card.appendChild(nameCard);
 
+
+        const labelPreferiti = document.createElement("label");
+        labelPreferiti.textContent = "Aggiungi ai preferiti";
+        card.appendChild(labelPreferiti);
+
         const preferiti = document.createElement("input");
         preferiti.type = "checkbox";
+        preferiti.classList.add("preferiti")
         preferiti.value = corpiCelestiDaMostrare[i].id
         preferiti.checked = corpiCelestiDaMostrare[i].preferiti
         card.appendChild(preferiti);
-
-        const categoryCard = document.createElement("p");
-
-        categoryCard.textContent = corpiCelestiDaMostrare[i].categoria;
-        card.appendChild(categoryCard);
 
         const dateCard = document.createElement("p");
         dateCard.textContent = `Osservato il: ${corpiCelestiDaMostrare[i].data} | alle: ${corpiCelestiDaMostrare[i].ora}`
@@ -138,7 +165,7 @@ function render() {
         card.appendChild(coordinateCard);
 
         const strumentoCard = document.createElement("p");
-        strumentoCard.textContent = corpiCelestiDaMostrare[i].strumento
+        strumentoCard.textContent = `Strumento: ${corpiCelestiDaMostrare[i].strumento}`
         card.appendChild(strumentoCard);
 
         const immagineCard = document.createElement("img");
@@ -147,12 +174,21 @@ function render() {
         card.appendChild(immagineCard);
 
         const deleteButton = document.createElement("button")
+        deleteButton.classList.add("delete-button")
         deleteButton.textContent = "Elimina"
         deleteButton.id = "delete-card"
         deleteButton.type = "button"
         console.log(`asdasd ${corpiCelestiDaMostrare[i].id}`)
         deleteButton.value = corpiCelestiDaMostrare[i].id
         card.appendChild(deleteButton)
+
+        const editButton = document.createElement("button")
+        editButton.classList.add("edit-button")
+        editButton.textContent = "Modifica"
+        editButton.id = "edit-card"
+        editButton.type = "button"
+        editButton.value = corpiCelestiDaMostrare[i].id
+        card.appendChild(editButton)
 
         listaCorpiCelesti.appendChild(card)
 
@@ -170,20 +206,20 @@ filterDiv.addEventListener("click", (event) => {
         categoryNebulas.classList.remove("selected")
         categoryPianeta.classList.remove("selected")
         categoryFav.classList.remove("selected")
-        const selectedCategory = event.target.textContent
-        if (selectedCategory === "Tutti") {
+        const selectedCategory = event.target.id
+        if (selectedCategory === "category-all") {
             categoryAll.classList.add("selected")
-        } else if (selectedCategory === "Stelle") {
+        } else if (selectedCategory === "category-stars") {
             categoryStars.classList.add("selected")
-        } else if (selectedCategory === "Satelliti") {
+        } else if (selectedCategory === "category-satellites") {
             categorySatellites.classList.add("selected")
-        } else if (selectedCategory === "Galassie") {
+        } else if (selectedCategory === "category-galaxies") {
             categoryGalaxies.classList.add("selected")
-        } else if (selectedCategory === "Nebulose") {
+        } else if (selectedCategory === "category-nebulas") {
             categoryNebulas.classList.add("selected")
-        } else if (selectedCategory === "Pianeti") {
+        } else if (selectedCategory === "category-pianeta") {
             categoryPianeta.classList.add("selected")
-        } else if (selectedCategory === "Preferiti") {
+        } else if (selectedCategory === "category-fav") {
             categoryFav.classList.add("selected")
         }
         render()
@@ -218,11 +254,13 @@ createForm.addEventListener("click", (event) => {
         selectElement.addEventListener("blur", function(event){
             if(document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato"){
                 errorCategoria.textContent = "La categoria è obbligatoria!"
+                notifica("Errore: compila i campi obbligatori!", "red")
                 return;
             } else {
                 errorCategoria.textContent = ""
             }
         })
+        selectElement.setAttribute("required", true)
 
         const errorCategoria = document.createElement("p");
         errorCategoria.style.color = "red";
@@ -235,6 +273,7 @@ createForm.addEventListener("click", (event) => {
 
         const inputNome = document.createElement("input");
         inputNome.type = "text";
+        inputNome.setAttribute("required", true)
         inputNome.placeholder = "Nome";
         inputNome.id = "Nome";
         myForm.appendChild(inputNome);
@@ -242,7 +281,11 @@ createForm.addEventListener("click", (event) => {
         inputNome.addEventListener("blur", function(event){
             if(document.querySelector("#Nome").value.trim() === ""){
                 errorNome.textContent = "Il nome è obbligatorio!"
+                notifica("Errore: Il nome è obbligatorio!", "red")
                 return;
+            } else if(document.querySelector("#Nome").value.length < 2) {
+                errorNome.textContent = "Il nome deve contenere almeno 2 caratteri!"
+                notifica("Errore: Il nome deve contenere almeno due caratteri!", "red")
             } else {
                 errorNome.textContent = ""
             }
@@ -303,6 +346,7 @@ createForm.addEventListener("click", (event) => {
         inputImmagine.id = "Immagine";
         inputImmagine.accept = "image/*";
         myForm.appendChild(inputImmagine);
+        inputImmagine.setAttribute("required", true)
 
         const errorImage = document.createElement("p")
         errorImage.style.color = "red"
@@ -317,13 +361,18 @@ createForm.addEventListener("click", (event) => {
             event.preventDefault()
             if(document.querySelector("#Nome").value.trim() === ""){
                 errorNome.textContent = "Il nome è obbligatorio!"
+                notifica("Errore: Il nome è obbligatorio!", "red")
                 return;
+            } else if(document.querySelector("#Nome").value.length < 2) {
+                errorNome.textContent = "Il nome deve contenere almeno 2 caratteri!"
+                notifica("Errore: Il nome deve contenere almeno 2 caratteri!", "red")
             } else {
                 errorNome.textContent = ""
             }
 
             if(document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato"){
                 errorCategoria.textContent = "La categoria è obbligatoria!"
+                notifica("Errore: La categoria è obbligatoria!", "red")
                 return;
             } else {
                 errorCategoria.textContent = ""
@@ -331,6 +380,7 @@ createForm.addEventListener("click", (event) => {
 
             if(document.querySelector("#Immagine").files.length == 0){
                 errorImage.textContent = "La foto è obbligatoria!"
+                notifica("Errore: La foto è obbligatoria!", "red")
                 return;
             } else {
                 errorImage.textContent = ""
@@ -355,6 +405,7 @@ createForm.addEventListener("click", (event) => {
                 localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
                 myForm.reset()
                 render()
+                notifica("Corpo celeste aggiunto con successo!", "green")
             }
         })
     } else if (addForm.textContent === "x") {
@@ -380,4 +431,41 @@ listaCorpiCelesti.addEventListener("click", function(evento){
         console.log(evento.target.value)
         deleteCorpoCeleste(evento.target.value)
     }
+    if(evento.target.type === "button" && evento.target.id === "edit-card"){
+        let index = corpiCelesti.findIndex(c => c.id == evento.target.value)
+        
+        let card = evento.target.parentElement
+        let nameCard = card.firstChild 
+
+        let input = document.createElement("input")
+        input.value = corpiCelesti[index].nome
+        card.replaceChild(input, nameCard)
+        input.focus()
+
+        input.addEventListener("blur", function(){
+            corpiCelesti[index].nome = input.value
+            localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
+            render()
+        })
+
+        input.addEventListener("keydown", function(e){
+            if(e.key === "Enter") input.blur()
+        })
+    }
 })
+
+toggleDark.addEventListener("change", function(evento) {
+    document.body.classList.toggle("dark");
+});
+
+const divNotifica = document.querySelector("#notifica");
+
+function notifica(testo, colore = "green") {
+    divNotifica.textContent = testo;
+    divNotifica.style.backgroundColor = colore; 
+    divNotifica.style.display = "block"; 
+
+    setTimeout(function() {
+        divNotifica.style.display = "none";
+    }, 3000);
+}

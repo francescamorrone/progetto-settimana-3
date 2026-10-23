@@ -79,25 +79,91 @@ padding: 4rem 4rem 0;
 }
 
 .card {
-    border: 1px solid black;
+    border: 1px solid rgba(192, 189, 189, 0.351);
     width: 25%;
     border-radius: 10px;
+    box-shadow: 0 0 7px 3px  #88888872;
+    padding: 1rem;
+    margin: 1rem;
+    display: inline-block;
+}
 
+.card > * {
+    padding: 0.3rem;
+}
+
+.card .name-card {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.card .delete-button, .card .edit-button {
+    padding: 9px;
+    border-radius: 25px;
+    border-style: none;
+    border: 1px solid #777;
+    margin-right: 0.5rem;
 }
 
 .immagine-card {
-    width: 60%;
-    border-radius: 7px;
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 0 auto 15px auto;
+    border-radius: 30px;
 }
 
+.dark {
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
 
+#my-form:not(:empty) {
+    border: 1px solid rgba(192, 189, 189, 0.351);
+    width: 25%;
+    border-radius: 10px;
+    box-shadow: 0 0 7px 3px  #88888872;
+    padding: 1rem;
+}
 
+#my-form:not(:empty) > input, select {
+    display: block;
+    padding: 4px;
+    margin: 3px;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 25px;
+}
+
+#my-form input[type="file"] {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+#my-form input[type="file"]::file-selector-button {
+    padding: 8px 15px;
+    background-color: #f7f7f7;
+    color: #565656;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+#my-form button[type="submit"] {
+    border-style: none;
+    border: 1px solid #a6a6a6;
+    border-radius: 25px;
+    padding: 0.5rem;
+}
 /*toggle +*/
 
 .create-form {
-display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
+display: inline-block;
   height: 50px;
   width: 50px;
   border: 1px solid #777;
@@ -117,5 +183,25 @@ font-size: 24px;
   text-align: center;
 }
 
+#notifica {
+    display: none; 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+}
+
 
 /**/
+
+footer {
+    background-color: #111116;
+    color: white;
+    padding: 3rem;
+    display: block;
+    text-align: center;
+}

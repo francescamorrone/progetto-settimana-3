@@ -10,7 +10,8 @@
 </head>
 
 
-<body>
+<body id="body">
+    <div id="notifica"></div>
     <div class="top-wrapper">
         <header>
             <div class="intestazione">
@@ -37,13 +38,13 @@
         </section>
 
         <div id="filter-div">
-            <button type="button" id="category-all" class="selected">Tutti</button>
-            <button type="button" id="category-stars">Stelle</button>
-            <button type="button" id="category-satellites">Satelliti</button>
-            <button type="button" id="category-galaxies">Galassie</button>
-            <button type="button" id="category-nebulas">Nebulose</button>
-            <button type="button" id="category-pianeta">Pianeti</button>
-            <button type="button" id="category-fav">Preferiti</button>
+            <button type="button" id="category-all" class="selected">Tutti<span id="riepilogoTutti"></span></button>
+            <button type="button" id="category-stars">Stelle<span id="riepilogoStelle"></span></button>
+            <button type="button" id="category-satellites">Satelliti<span id="riepilogoSatelliti"></span></button>
+            <button type="button" id="category-galaxies">Galassie<span id="riepilogoGalassie"></span></button>
+            <button type="button" id="category-nebulas">Nebulose<span id="riepilogoNebulose"></span></button>
+            <button type="button" id="category-pianeta">Pianeti<span id="riepilogoPianeti"></span></button>
+            <button type="button" id="category-fav">Preferiti<span id="riepilogoFav"></span></button>
 
         </div>
     </div>
@@ -66,11 +67,10 @@
             </section>
         </main>
 
-        <footer>
+    </div>
+            <footer>
             Francesca Morrone - 2026
         </footer>
-
-    </div>
     <script src="assets/js/script.js"></script>
 </body>
 
