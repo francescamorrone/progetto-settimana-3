@@ -27,18 +27,16 @@ h1, header p {
 }
 
 
-
 .top-wrapper {
     background-color: #111116;
     background-image: url('../img/controls-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 5rem
 }
 
 header {
-    background-color: #111116;
+    background-color: #111116e2;
     overflow: hidden;
     width: 100%;
     padding: 2rem 6rem;
@@ -50,22 +48,14 @@ header {
 
 
 /*search section*/
-
-
 .top-wrapper {
-    background-color: #111116;
-    background-image: url('../img/controls-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 5rem
+
 }
 
 #controls {
-margin-bottom: 2rem;
-max-width: 992px;
-margin: 0 auto;
-margin-bottom: 2rem;
+
+    padding: 5rem
+
 }
 
 #search {
