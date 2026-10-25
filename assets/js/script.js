@@ -40,7 +40,62 @@ if (previousData !== null) {
         strumento: "Binocolo",
         preferiti: true,
         immagine: "https://media-assets.wired.it/photos/6336eae909f48deb0c26a936/16:9/w_2560%2Cc_limit/ganapathy-kumar-ve_uN9V8xqU-unsplash.jpg"
-    })
+    },
+        {
+        id: Date.now(),
+        nome: "Sirio",
+        categoria: "Stella",
+        data: "23 Ottobre 2026",
+        ora: "20:15",
+        coordinate: "16,71631° S, 101,52875° E",
+        strumento: "Telescopio",
+        preferiti: true,
+        immagine: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800"
+    },
+    {
+        id: Date.now(),
+        nome: "Giove",
+        categoria: "Pianeta",
+        data: "23 Ottobre 2026",
+        ora: "21:00",
+        coordinate: "23,45000° N, 45,12000° E",
+        strumento: "Binocolo",
+        preferiti: false,
+        immagine: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800"
+    },
+    {
+        id: Date.now(),
+        nome: "Nebulosa di Orione",
+        categoria: "Nebulosa",
+        data: "24 Ottobre 2026",
+        ora: "03:45",
+        coordinate: "5,39111° S, 83,82250° E",
+        strumento: "Telescopio",
+        preferiti: true,
+        immagine: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800"
+    },
+    {
+        id: Date.now(),
+        nome: "Galassia Andromeda",
+        categoria: "Galassia",
+        data: "24 Ottobre 2026",
+        ora: "04:20",
+        coordinate: "41,26917° N, 10,68472° E",
+        strumento: "Telescopio",
+        preferiti: true,
+        immagine: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800"
+    },
+{
+        id: Date.now(),
+        nome: "Eclissi Solare",
+        categoria: "Stella",
+        data: "25 Ottobre 2026",
+        ora: "13:15",
+        coordinate: "45,46420° N, 9,19000° E",
+        strumento: "Occhiali",
+        preferiti: true,
+        immagine: "https://upload.wikimedia.org/wikipedia/commons/1/17/Eclipse20260812Leon.jpg?utm_source=it.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    });
 };
 
 function leggiFiltri() {
@@ -65,7 +120,7 @@ function leggiFiltri() {
     return outputArray;
 }
 
-function cerca(arrayDaCercare){
+function cerca(arrayDaCercare) {
     //restituisci un array contenente solo elementi che contengono la stringa da cercare
     const searchString = search.value
     return arrayDaCercare.filter(o => o.nome.toLowerCase().includes(searchString))
@@ -84,19 +139,19 @@ function ordina(criterio) {
     //restituisci un array ordinato secondo quel criterio
 }
 
-function aggiungiRimuoviPreferiti(id, checked){
+function aggiungiRimuoviPreferiti(id, checked) {
     let index = corpiCelesti.findIndex(corpoCeleste => corpoCeleste.id == id)
-    
-    if(index !== -1){
+
+    if (index !== -1) {
         corpiCelesti[index].preferiti = checked
         localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
     }
     render()
 }
 
-function deleteCorpoCeleste(id){
+function deleteCorpoCeleste(id) {
     let index = corpiCelesti.findIndex(corpoCeleste => corpoCeleste.id == id)
-    if(index !== -1){
+    if (index !== -1) {
         corpiCelesti.splice(index, 1)
         localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
         notifica("Corpo celeste eliminato!", "green")
@@ -239,8 +294,8 @@ createForm.addEventListener("click", (event) => {
             selectElement.appendChild(option);
         });
         myForm.appendChild(selectElement);
-        selectElement.addEventListener("blur", function(event){
-            if(document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato"){
+        selectElement.addEventListener("blur", function (event) {
+            if (document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato") {
                 errorCategoria.textContent = "La categoria è obbligatoria!"
                 notifica("Errore: compila i campi obbligatori!", "red")
                 return;
@@ -266,12 +321,12 @@ createForm.addEventListener("click", (event) => {
         inputNome.id = "Nome";
         myForm.appendChild(inputNome);
 
-        inputNome.addEventListener("blur", function(event){
-            if(document.querySelector("#Nome").value.trim() === ""){
+        inputNome.addEventListener("blur", function (event) {
+            if (document.querySelector("#Nome").value.trim() === "") {
                 errorNome.textContent = "Il nome è obbligatorio!"
                 notifica("Errore: Il nome è obbligatorio!", "red")
                 return;
-            } else if(document.querySelector("#Nome").value.length < 2) {
+            } else if (document.querySelector("#Nome").value.length < 2) {
                 errorNome.textContent = "Il nome deve contenere almeno 2 caratteri!"
                 notifica("Errore: Il nome deve contenere almeno due caratteri!", "red")
             } else {
@@ -347,18 +402,18 @@ createForm.addEventListener("click", (event) => {
         myForm.appendChild(sendButton);
         myForm.addEventListener("submit", (event) => {
             event.preventDefault()
-            if(document.querySelector("#Nome").value.trim() === ""){
+            if (document.querySelector("#Nome").value.trim() === "") {
                 errorNome.textContent = "Il nome è obbligatorio!"
                 notifica("Errore: Il nome è obbligatorio!", "red")
                 return;
-            } else if(document.querySelector("#Nome").value.length < 2) {
+            } else if (document.querySelector("#Nome").value.length < 2) {
                 errorNome.textContent = "Il nome deve contenere almeno 2 caratteri!"
                 notifica("Errore: Il nome deve contenere almeno 2 caratteri!", "red")
             } else {
                 errorNome.textContent = ""
             }
 
-            if(document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato"){
+            if (document.querySelector("#Categoria").value.trim() === "Corpo celeste avvistato") {
                 errorCategoria.textContent = "La categoria è obbligatoria!"
                 notifica("Errore: La categoria è obbligatoria!", "red")
                 return;
@@ -366,7 +421,7 @@ createForm.addEventListener("click", (event) => {
                 errorCategoria.textContent = ""
             }
 
-            if(document.querySelector("#Immagine").files.length == 0){
+            if (document.querySelector("#Immagine").files.length == 0) {
                 errorImage.textContent = "La foto è obbligatoria!"
                 notifica("Errore: La foto è obbligatoria!", "red")
                 return;
@@ -402,44 +457,46 @@ createForm.addEventListener("click", (event) => {
     }
 });
 
-search.addEventListener("input", function(event){
+search.addEventListener("input", function (event) {
     render()
 })
 
-listaCorpiCelesti.addEventListener("change", function(evento){
-    if(evento.target.type === "checkbox"){
+listaCorpiCelesti.addEventListener("change", function (evento) {
+    if (evento.target.type === "checkbox") {
         aggiungiRimuoviPreferiti(evento.target.value, evento.target.checked)
     }
 })
 
-listaCorpiCelesti.addEventListener("click", function(evento){
-    if(evento.target.type === "button" && evento.target.id === "delete-card"){
+listaCorpiCelesti.addEventListener("click", function (evento) {
+    if (evento.target.type === "button" && evento.target.id === "delete-card") {
         deleteCorpoCeleste(evento.target.value)
     }
-    if(evento.target.type === "button" && evento.target.id === "edit-card"){
+    if (evento.target.type === "button" && evento.target.id === "edit-card") {
         let index = corpiCelesti.findIndex(c => c.id == evento.target.value)
-        
+
         let card = evento.target.parentElement
-        let nameCard = card.querySelector(".name-card") 
+        let nameCard = card.querySelector(".name-card")
 
         let input = document.createElement("input")
         input.value = corpiCelesti[index].nome
         card.replaceChild(input, nameCard)
         input.focus()
 
-        input.addEventListener("blur", function(){
+        input.addEventListener("blur", function () {
             corpiCelesti[index].nome = input.value
             localStorage.setItem("corpiCelesti", JSON.stringify(corpiCelesti))
             render()
         })
 
-        input.addEventListener("keydown", function(e){
-            if(e.key === "Enter") input.blur()
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") input.blur()
         })
     }
 })
 
-toggleDark.addEventListener("change", function(evento) {
+//dark mode
+
+toggleDark.addEventListener("change", function (evento) {
     document.body.classList.toggle("dark");
 });
 
@@ -447,10 +504,10 @@ const divNotifica = document.querySelector("#notifica");
 
 function notifica(testo, colore = "green") {
     divNotifica.textContent = testo;
-    divNotifica.style.backgroundColor = colore; 
-    divNotifica.style.display = "block"; 
+    divNotifica.style.backgroundColor = colore;
+    divNotifica.style.display = "block";
 
-    setTimeout(function() {
+    setTimeout(function () {
         divNotifica.style.display = "none";
     }, 3000);
 }
