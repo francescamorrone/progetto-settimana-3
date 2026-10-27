@@ -92,7 +92,7 @@ if (previousData !== null) {
         data: "25 Ottobre 2026",
         ora: "13:15",
         coordinate: "45,46420° N, 9,19000° E",
-        strumento: "Occhiali",
+        strumento: "Occhiali]",
         preferiti: true,
         immagine: "https://upload.wikimedia.org/wikipedia/commons/1/17/Eclipse20260812Leon.jpg?utm_source=it.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
     });
@@ -123,9 +123,11 @@ function leggiFiltri() {
 function cerca(arrayDaCercare) {
     //restituisci un array contenente solo elementi che contengono la stringa da cercare
     const searchString = search.value
-    return arrayDaCercare.filter(o => o.nome.toLowerCase().includes(searchString))
+    return arrayDaCercare.filter(o => o.nome.toLowerCase().includes(searchString.toLowerCase()))
 }
 
+
+//categoria inteso come bottone, array database
 function filtra(arrayDaFiltrare, categoria) {
     //restituisci un array contenente solo elementi di quella categoria
     if (categoria === "Fav") {
