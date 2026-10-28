@@ -12,12 +12,8 @@ Nebula è una web app che permette di tenere traccia dei corpi celesti osservati
 
 - [Funzionalità](#-funzionalità)
 - [Tecnologie](#-tecnologie)
-- [Struttura dei dati](#-struttura-dei-dati)
-- [Installazione e utilizzo](#-installazione-e-utilizzo)
 - [Come si usa](#-come-si-usa)
-- [Limiti noti](#-limiti-noti)
 - [Roadmap](#-roadmap)
-- [Autrice](#-autrice)
 
 ---
 
