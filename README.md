@@ -1,6 +1,6 @@
 # Progetto Settimanale 3 - Nebula
 
-Nebula è un diario web progettato per l'osservazione del cielo. 
+Nebula è un'applicazione web interattiva pensata per gli amanti dello stargazing e dell'astronomia. Funge da diario personale per tracciare e catalogare i corpi celesti osservati, permettendo agli utenti di registrare ogni dettaglio delle loro notti passate ad ammirare il cosmo.
 
 ## Funzionalità implementate:
 
